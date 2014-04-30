@@ -1,0 +1,39 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false" standardController="Merchandise__c" recordSetVar="products">
+  <!-- stylesheets and scripts, from CDN (use local files in production) -->
+  <apex:stylesheet value="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+  <apex:includeScript value="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"/>
+  <apex:includeScript value="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.0/jquery.mobile-1.1.0.min.js"/>
+ 
+  <body>
+      
+      <!-- Main page, to display list of Merchandise once app starts -->
+      <div data-role="page" data-theme="b" id="mainpage"> 
+          <!-- page header -->
+          <div  data-role="header">
+              <!-- button for logging out -->
+              <a href='#' id="link_logout" data-role="button" data-icon='delete'>
+                  Log Out
+              </a>
+              <!-- page title -->
+              <h2>List</h2>
+          </div> 
+          <!-- page content -->
+          <div id="#content" data-role="content">
+              <!-- page title -->
+              <h2>Mobile Inventory</h2> 
+              <!-- list of merchandise, links to detail pages -->
+              <div id="div_merchandise_list">
+                <ul data-inset="true" data-role="listview" data-theme="a" data-dividertheme="a"> 
+                   <apex:repeat value="{!products}" var="product">
+                      <li>
+                         <a href="#detailpage{!product.Id}">
+                            <apex:outputField value="{!product.Name}"/>
+                         </a>
+                      </li>
+                   </apex:repeat>
+                </ul>
+              </div>
+          </div>
+      </div> 
+  </body>
+</apex:page>
